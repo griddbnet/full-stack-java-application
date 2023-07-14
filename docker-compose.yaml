@@ -1,0 +1,48 @@
+version: '3.9'
+#volumes:
+#  griddb:
+
+services:
+
+  griddb-server:
+    build:
+      context: griddb-server
+      dockerfile: Dockerfile
+    container_name: griddb-server
+    user: root
+    expose:
+      - '10001'
+      - '10010'
+      - '10020'
+      - '10040'
+      - '20001'
+      - '41999'
+    environment:
+      NOTIFICATION_MEMBER: 1
+      GRIDDB_CLUSTER_NAME: myCluster
+
+
+  web-api:
+    build:
+      context: web-api
+      dockerfile: Dockerfile
+    container_name: web-api
+    ports: 
+      - '8080:8080'
+    healthcheck:
+      test: ["CMD", "curl",  "--location", "http://localhost:8080/griddb/v2/myCluster/dbs/public/containers/test_container/rows", "--header", "Content-Type: application/json", "--header", "Authorization: Basic YWRtaW46YWRtaW4=", "--data", "{\"limit\": 100}"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  log-agent: 
+    build:
+      context: agent
+      dockerfile: Dockerfile
+    container_name: log-agent
+    restart: unless-stopped
+    depends_on:
+      griddb-server:
+        condition: service_started
+      web-api:
+        condition: service_healthy
