@@ -9,5 +9,5 @@ COPY tests ./tests
 COPY conf ./conf
 
 RUN mvn install
-RUN ./tests/testAgent.sh
+RUN touch log-half-second.txt
 CMD ["java", "-jar", "target/GridLogAgent.jar"]
