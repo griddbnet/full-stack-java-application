@@ -1,17 +1,13 @@
-FROM maven
+FROM griddbnet/java-log-course-agent
 
 WORKDIR /app
 
-COPY pom.xml ./
-
-COPY src ./src
 COPY tests ./tests
 COPY conf ./conf
 
-RUN mvn clean
-RUN mvn package
-
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["java", "-jar", "target/Agent.jar"]
+

@@ -1,0 +1,87 @@
+{
+    "griddb" : {
+        "clusterName": "myCluster"
+    },
+    "rules" : [
+        {
+            "logtype": "tests",
+            "SAMPLE": "Thu 17 Aug 2023 01:41:49 PM PDT hpelnxdev random log entry",
+            "format": "([\w]+\s[\w]+\s[\d]+\s[\d:]+\s[\w]+\s[\w]+\s[\w]+)\s([\w]+)\s(.+)",
+            "timestamp_pos" : 1,
+            "timestamp_format" : "EEE MMM dd hh:mm:ss a z YYYY",
+            "schema" : [
+                {"name": "timestamp", "type": "TIMESTAMP", "index": ["tree"]},
+                {"name": "hostname", "type": "STRING", "index": []},
+                {"name": "log", "type": "STRING", "index": []}
+            ]
+
+        },
+        {
+            "logtype": "syslogs",
+            "sample" : "Aug  1 13:45:47 hpelnxdev systemd[1888]: Stopped Tracker metadata database store and lookup manager.",
+            "origin" : "([\\w]+\\s[\\d]+\\s[\\d:]+)\\s([\\w]+)\\s([\\w]+)\\[.+\\]:\\s(.+)",
+            "format" : "([\\w]+\\s[\\d]+\\s[\\d:]+)\\s([\\w]+)\\s+(.+)\\[.+\\]:\\s(.+)",
+            "timestamp_pos" : 1,
+            "timestamp_format" : "MMM dd HH:mm:ss",
+            "schema" : [
+                {"name": "timestamp", "type": "TIMESTAMP", "index": ["tree"]},
+                {"name": "hostname", "type": "STRING", "index": []},
+                {"name": "program", "type": "STRING", "index": []},
+                {"name": "log", "type": "STRING", "index": []}
+            ]
+        },
+
+        {
+            "logtype": "apache",
+            "SAMPLE": "Thu 17 Aug 2023 01:41:49 PM PDT hpelnxdev random log entry",
+            "format": "([\w]+\s[\w]+\s[\d]+\s[\d:]+\s[\w]+\s[\w]+\s[\w]+)\s([\w]+)\s(.+)",
+            "timestamp_pos" : 1,
+            "timestamp_format" : "EEE MMM dd hh:mm:ss a z YYYY",
+            "schema" : [
+                {"name": "timestamp", "type": "TIMESTAMP", "index": ["tree"]},
+                {"name": "hostname", "type": "STRING", "index": []},
+                {"name": "log", "type": "STRING", "index": []}
+            ]
+
+        },
+        {
+            "logtype": "cpu",
+            "SAMPLE": "Thu 17 Aug 2023 01:41:49 PM PDT hpelnxdev random log entry",
+            "format": "([\w]+\s[\w]+\s[\d]+\s[\d:]+\s[\w]+\s[\w]+\s[\w]+)\s([\w]+)\s(.+)",
+            "timestamp_pos" : 1,
+            "timestamp_format" : "EEE MMM dd hh:mm:ss a z YYYY",
+            "schema" : [
+                {"name": "timestamp", "type": "TIMESTAMP", "index": ["tree"]},
+                {"name": "hostname", "type": "STRING", "index": []},
+                {"name": "log", "type": "STRING", "index": []}
+            ]
+
+        },
+        {
+            "logtype": "web",
+            "SAMPLE": "Thu 17 Aug 2023 01:41:49 PM PDT hpelnxdev random log entry",
+            "format": "([\w]+\s[\w]+\s[\d]+\s[\d:]+\s[\w]+\s[\w]+\s[\w]+)\s([\w]+)\s(.+)",
+            "timestamp_pos" : 1,
+            "timestamp_format" : "EEE MMM dd hh:mm:ss a z YYYY",
+            "schema" : [
+                {"name": "timestamp", "type": "TIMESTAMP", "index": ["tree"]},
+                {"name": "hostname", "type": "STRING", "index": []},
+                {"name": "log", "type": "STRING", "index": []}
+            ]
+
+        },
+        {
+            "logtype": "http",
+            "SAMPLE": "Thu 17 Aug 2023 01:41:49 PM PDT hpelnxdev random log entry",
+            "format": "([\w]+\s[\w]+\s[\d]+\s[\d:]+\s[\w]+\s[\w]+\s[\w]+)\s([\w]+)\s(.+)",
+            "timestamp_pos" : 1,
+            "timestamp_format" : "EEE MMM dd hh:mm:ss a z YYYY",
+            "schema" : [
+                {"name": "timestamp", "type": "TIMESTAMP", "index": ["tree"]},
+                {"name": "hostname", "type": "STRING", "index": []},
+                {"name": "log", "type": "STRING", "index": []}
+            ]
+
+        }
+    ]
+}

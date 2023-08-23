@@ -1,0 +1,14 @@
+{ 
+  "logs": [
+    {
+      "type":"tests",
+      "path": "log-half-second.txt",
+      "interval": 1000
+    },
+   {
+    "type":"syslogs",
+    "path": "/logs/syslog",
+    "interval": 1000
+  }
+  ]
+}

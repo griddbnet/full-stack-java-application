@@ -1,13 +1,19 @@
-# java-course
+# Running Program
 
 1. docker compose build
-2. docker compose up
-3. wait for all services to be up (the log agent waits until the web api and griddb server are up before it starts
-4. ssh into log agent container ( $ docker exec -it log-agent /bin/bash)
-5. run test: $ ./tests/testAgent.sh
-    - This test will write to a text fiel every .5 seconds and the log reader will read that and write to griddb
-6. Exit container
-7. from host machine, run the griddb test
-    - $ ./agent/tests/readGridDBContainer.sh
-        - you should see the rows of data printed out and then the container deleted
+2. docker compose up -d --force-recreate
 
+If GridDB fails to start, many of the containers won't either. Just run `docker compose up` again
+
+## Test
+
+1. cd agent
+2. ./tests/runTestInDocker.sh
+3. ./tests/readGridDBContainer.sh
+
+## Running Many Demo Agent hosts
+
+- You can run this without running any of the above. It will start the GridDB server and the web api before running the demos and their tests
+- You can also run this while the rest of the containers are runningw
+
+1. docker compose up agent_demo_1 agent_demo_2 agent_demo_3 agent_demo_4 --force-recreate

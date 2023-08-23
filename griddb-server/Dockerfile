@@ -19,6 +19,7 @@ RUN wget --no-check-certificate https://github.com/griddb/cli/releases/download/
 RUN dpkg -i griddb-ce-cli_5.0.0_amd64.deb
 
 ADD start-griddb2.sh /
+ADD .gsshrc /root
 RUN chmod +x start-griddb2.sh
 USER gsadm
 

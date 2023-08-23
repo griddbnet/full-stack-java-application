@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./tests/createLog.sh .5 > log-half-second.txt &
+./tests/createLog.sh 1 > log.txt &
 cl_pid=$!
 echo $cl_pid &
 java -jar target/Agent.jar &
