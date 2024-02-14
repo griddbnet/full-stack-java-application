@@ -5,9 +5,7 @@ version: '3.9'
 services:
 
   griddb-server:
-    build:
-      context: griddb-server
-      dockerfile: Dockerfile
+    image: griddbnet/full-stack-java-app-griddb-server
     container_name: griddb-server
     user: root
     expose:
@@ -28,9 +26,7 @@ services:
 
 
   web-api:
-    build:
-      context: web-api
-      dockerfile: Dockerfile
+    image: griddbnet/full-stack-java-app-webapi
     container_name: web-api
     ports:
       - '8080:8080'
@@ -53,9 +49,7 @@ services:
       retries: 5
 
   log-agent:
-    build:
-      context: agent
-      dockerfile: Dockerfile
+    image: griddbnet/full-stack-java-app-agent
     container_name: log-agent
     restart: unless-stopped
     hostname: agent
@@ -68,9 +62,7 @@ services:
         condition: service_healthy
   
   log-processor:
-    build:
-      context: processor
-      dockerfile: Dockerfile
+    image: griddbnet/full-stack-java-app-processor
     container_name: log-processor
     depends_on:
       griddb-server:
@@ -79,9 +71,7 @@ services:
         condition: service_started
 
   log-viewer-backend:
-    build:
-      context: ./log-viewer/backend
-      dockerfile: Dockerfile
+    image: griddbnet/full-stack-java-app-logviewer-backend
     container_name: log-viewer-backend
     depends_on:
       griddb-server:
@@ -90,9 +80,7 @@ services:
       - '8090:8090'
 
   log-viewer-frontend:
-    build:
-      context: ./log-viewer/frontend
-      dockerfile: Dockerfile
+    image: griddbnet/full-stack-java-app-logviewer-frontend
     container_name: log-viewer-frontend
     depends_on:
       griddb-server:
